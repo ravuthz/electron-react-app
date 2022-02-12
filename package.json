@@ -6,13 +6,16 @@
   "license": "MIT",
   "main": "./main.js",
   "author": "Vannaravuth Yo <ravuthz@gmail.com> (https://ravuthz.github.io)",
-  "description": "Electron React App Boilerplate",
+  "description": "Space Cleaner App",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "cli-table3": "^0.6.1",
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "kleur": "^4.1.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -33,7 +36,9 @@
     "app:start": "electron .",
     "app:build": "electron-builder",
     "dev": "cross-env BROWSER=none NODE_ENV=development concurrently -k 'npm:web:start' 'npm:app:start'",
-    "build": "cross-env NODE_ENV=production npm run web:build && npm run app:build"
+    "prebuild": "node ./prebuild.js",
+    "build": "cross-env NODE_ENV=production npm run web:build && npm run app:build",
+    "start": "node ./prebuild.js"
   },
   "eslintConfig": {
     "extends": [
@@ -55,7 +60,7 @@
   },
   "build": {
     "appId": "com.electron.react",
-    "productName": "Electron React App",
+    "productName": "Space Cleaner",
     "copyright": "Copyright © ${author}",
     "files": [
       "build/**/*",
