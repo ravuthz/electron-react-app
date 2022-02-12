@@ -1,21 +1,39 @@
 {
   "name": "electron-react-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "./",
+  "license": "MIT",
+  "main": "./main.js",
+  "author": "Vannaravuth Yo <ravuthz@gmail.com> (https://ravuthz.github.io)",
+  "description": "Electron React App Boilerplate",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "wait-on": "^6.0.0",
     "web-vitals": "^2.1.0"
   },
+  "devDependencies": {
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.5",
+    "electron-reload": "^2.0.0-alpha.1"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "web:start": "react-scripts start",
+    "web:build": "react-scripts build",
+    "web:test": "react-scripts test",
+    "web:eject": "react-scripts eject",
+    "electron": "electron",
+    "app:start": "electron .",
+    "app:build": "electron-builder",
+    "dev": "cross-env BROWSER=none NODE_ENV=development concurrently -k 'npm:web:start' 'npm:app:start'",
+    "build": "cross-env NODE_ENV=production npm run web:build && npm run app:build"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +52,28 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "build": {
+    "appId": "com.electron.react",
+    "productName": "Electron React App",
+    "copyright": "Copyright © ${author}",
+    "files": [
+      "build/**/*",
+      "public/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "main.js"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true
+    },
+    "extends": null
   }
 }
