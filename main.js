@@ -20,8 +20,8 @@ if (isDev) {
 
 let mainWindow;
 
-const minWidth = ELECTRON_APP_MIN_WIDTH || 570;
-const minHeight = ELECTRON_APP_MIN_HEIGHT || 640;
+const minWidth = ELECTRON_APP_MIN_WIDTH || 850; // 570;
+const minHeight = ELECTRON_APP_MIN_HEIGHT || 638; // 640;
 const width = ELECTRON_APP_WIDTH || minWidth;
 const height = ELECTRON_APP_HEIGHT || minHeight;
 
