@@ -121,6 +121,10 @@ const WhiteSpaceStarReplacer = () => {
     const { html } = values;
     let text1 = DOMPurify.sanitize(html, { FORBID_TAGS })
       .replaceAll(new RegExp(dotSpan, "gu"), "")
+      .replaceAll(/\r/g, dot)
+      .replaceAll(/\n/g, dot)
+      .replaceAll(/\f/g, dot)
+      .replaceAll(/\v/g, dot)
       .replaceAll(dot, "");
     setValues((old) => ({ ...old, html: text1 }));
     if ("clipboard" in navigator) {
